@@ -25,7 +25,9 @@ public class MessagesResource {
 	@GET
 	@Path("/{messageId}")
 	@Produces(MediaType.APPLICATION_XML)
+	//Jersey converts the String to long
 	public Message getMessage(@PathParam("messageId") long messageId) {
 		return messageService.getMessage(messageId);
 	}
+	
 }
