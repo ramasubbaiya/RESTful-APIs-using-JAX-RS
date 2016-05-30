@@ -17,14 +17,14 @@ public class MessagesResource {
 	MessageService messageService = new MessageService();
 	
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessages() {
 		return messageService.getAllMessages();
 	}
 	
 	@GET
 	@Path("/{messageId}")
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	//Jersey converts the String to long
 	public Message getMessage(@PathParam("messageId") long messageId) {
 		return messageService.getMessage(messageId);
