@@ -2,6 +2,9 @@ package com.ramasubbaiya.restful.mailman.model;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Profile {
 	
 	private long id;
@@ -14,7 +17,7 @@ public class Profile {
 	
 	}
 
-	public Profile(long id, String profileName, String firstName, String lastName, Date created) {
+	public Profile(long id, String profileName, String firstName, String lastName) {
 		this.id = id;
 		this.profileName = profileName;
 		this.firstName = firstName;

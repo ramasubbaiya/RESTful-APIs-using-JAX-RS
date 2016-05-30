@@ -11,10 +11,6 @@ public class MessageService {
 	
 	private Map<Long, Message> messages = StaticDatabase.getMessages();
 	
-	public MessageService() {
-		
-	}
-	
 	//Get All Messages
 	public List<Message> getAllMessages() { 
 		return new ArrayList<Message>(messages.values());

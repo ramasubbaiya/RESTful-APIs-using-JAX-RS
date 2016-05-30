@@ -1,19 +1,19 @@
 package com.ramasubbaiya.restful.mailman.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ramasubbaiya.restful.mailman.database.StaticDatabase;
 import com.ramasubbaiya.restful.mailman.model.Profile;
 
 public class ProfileService {
 
-	private Map<String, Profile> profiles = new HashMap<>();
+	private Map<String, Profile> profiles = StaticDatabase.getProfiles();
 	
 	//Get All Profiles
 	public  List<Profile> getAllProfiles() {
-		return new ArrayList<>(profiles.values());
+		return new ArrayList<Profile>(profiles.values());
 	}
 	
 	//Get a Profile
@@ -30,11 +30,10 @@ public class ProfileService {
 	
 	//Update a Profile
 	public Profile updateProfile(Profile profile) {
-		if(profiles.containsValue(profile.getProfileName())){
-			profiles.put(profile.getProfileName(), profile);
-		} else {
+		if(profile.getProfileName().isEmpty()) {
 			return null;
-		}
+		} 
+		profiles.put(profile.getProfileName(), profile);
 		return profile;
 	}
 	
