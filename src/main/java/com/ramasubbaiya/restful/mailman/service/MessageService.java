@@ -12,25 +12,27 @@ public class MessageService {
 	private Map<Long, Message> messages = StaticDatabase.getMessages();
 	
 	public MessageService() {
-		messages.put(1L, new Message(1, "Message 1 ", "Rama"));
-		messages.put(2L, new Message(2, "Message 2 ", "Rama"));
-		messages.put(3L, new Message(3, "Message 3 ", "Rama"));
+		
 	}
 	
+	//Get All Messages
 	public List<Message> getAllMessages() { 
 		return new ArrayList<Message>(messages.values());
 	}
 	
+	//Get a Message
 	public Message getMessage(long id) {
 		return messages.get(id);
 	}
 	
+	//Add a Message
 	public Message addMessage(Message message) {
 		message.setId(messages.size() + 1);
 		messages.put(message.getId(), message);
 		return message;
 	}
 	
+	//Update a Message
 	public Message updateMessage(Message message) {
 		if(message.getId() <= 0) {
 			return null;
@@ -39,6 +41,7 @@ public class MessageService {
 		return message;
 	}
 	
+	//Remove a Message
 	public Message removeMessage(long id) {
 		return messages.remove(id);
 	}
