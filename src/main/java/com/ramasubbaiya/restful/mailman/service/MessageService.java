@@ -1,6 +1,7 @@
 package com.ramasubbaiya.restful.mailman.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,27 @@ public class MessageService {
 	//Get All Messages
 	public List<Message> getAllMessages() { 
 		return new ArrayList<Message>(messages.values());
+	}
+	
+	//Filter based on year
+	public List<Message> getAllMessagesForYear(int year) {
+		ArrayList<Message> messagesForYear = new ArrayList<>();
+		Calendar cal = Calendar.getInstance();
+		//Loop into messages to get the YEAR equal to users filtered Year and add them to new Array 
+		for(Message message: messages.values()) {
+			cal.setTime(message.getCreated());
+			if(cal.get(Calendar.YEAR) == year) 
+				messagesForYear.add(message);
+		}
+		return messagesForYear;
+	}
+	
+	//Pagination based on start and size value
+	public List<Message> getAllMessagesPaginated(int start, int size) {
+		ArrayList<Message> list = new ArrayList<Message>();
+		if((start + size) > list.size()) return new ArrayList<Message>();
+		//Returns a list between fromIndex and toIndex
+		return list.subList(start, start + size);
 	}
 	
 	//Get a Message
