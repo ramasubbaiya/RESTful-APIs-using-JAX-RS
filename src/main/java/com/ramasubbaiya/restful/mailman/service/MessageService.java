@@ -33,6 +33,7 @@ public class MessageService {
 	//Pagination based on start and size value
 	public List<Message> getAllMessagesPaginated(int start, int size) {
 		ArrayList<Message> list = new ArrayList<Message>();
+		//if the size of the entered value goes beyond the list size return a empty Array
 		if((start + size) > list.size()) return new ArrayList<Message>();
 		//Returns a list between fromIndex and toIndex
 		return list.subList(start, start + size);
