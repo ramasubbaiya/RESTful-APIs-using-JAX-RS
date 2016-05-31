@@ -51,7 +51,7 @@ public class Message {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	//It doesn't not show all the comments
+	//It doesn't not show all the comments - comments are hided
 	@XmlTransient
 	public Map<Long, Comment> getComments() {
 		return comments;

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ramasubbaiya.restful.mailman.database.StaticDatabase;
+import com.ramasubbaiya.restful.mailman.exception.DataNotFoundException;
 import com.ramasubbaiya.restful.mailman.model.Message;
 
 public class MessageService {
@@ -41,7 +42,11 @@ public class MessageService {
 	
 	//Get a Message
 	public Message getMessage(long id) {
-		return messages.get(id);
+		Message message = messages.get(id);
+		if(message == null)
+			throw new DataNotFoundException("Message with id " + id + " not found");
+		
+		return message;
 	}
 	
 	//Add a Message
