@@ -12,14 +12,14 @@
 * Sending Status codes and Location headers
 
 
-	Without Response
+	* Without Response
 
 	```@POST
 	public Message addMessage(Message message) {
 		return messageService.addMessage(message);
 	}
 	```
-	Response with StatusCode
+	* Response with StatusCode
 	
 	```@POST
 	public Response addMessage(Message message) {
@@ -29,7 +29,7 @@
 					   .build();
 	}
 	```
-	Response with Location
+	* Response with Location
 	
 	```@POST
 	public Response addMessage(Message message, @Context UriInfo uriInfo) {
