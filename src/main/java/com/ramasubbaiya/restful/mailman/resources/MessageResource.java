@@ -17,12 +17,13 @@ import com.ramasubbaiya.restful.mailman.model.Message;
 import com.ramasubbaiya.restful.mailman.service.MessageService;;
 
 @Path("/messages")
-public class MessagesResource {
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+public class MessageResource {
 	
 	MessageService messageService = new MessageService();
 	
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessages(@QueryParam("year") int year, 
 									 @QueryParam("start") int start, 
 									 @QueryParam("size") int size) {
@@ -36,16 +37,12 @@ public class MessagesResource {
 	}
 	
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Message addMessage(Message message) {
 		return messageService.addMessage(message);
 	}
 	
 	@PUT
 	@Path("/{messageId}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Message updateMessage(@PathParam("messageId") long id, Message message) {
 		message.setId(id);
 		return messageService.updateMessage(message);
@@ -53,7 +50,6 @@ public class MessagesResource {
 	
 	@DELETE
 	@Path("/{messageId}")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Message removeMessage(@PathParam("messageId") long messageId) {
 		return messageService.removeMessage(messageId);
 	}
@@ -61,10 +57,13 @@ public class MessagesResource {
 	
 	@GET
 	@Path("/{messageId}")
-	@Produces(MediaType.APPLICATION_JSON)
-	//Jersey converts the String to long
 	public Message getMessage(@PathParam("messageId") long messageId) {
 		return messageService.getMessage(messageId);
 	}
 	
+	@GET
+	@Path("/{messageId}/comments")
+	public CommentResource getCommentsResource() {
+		return new CommentResource();
+	}
 }

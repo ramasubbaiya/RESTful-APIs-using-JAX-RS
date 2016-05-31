@@ -16,7 +16,7 @@ import com.ramasubbaiya.restful.mailman.model.Profile;
 import com.ramasubbaiya.restful.mailman.service.ProfileService;;
 
 @Path("/profiles")
-public class ProfilesResource {
+public class ProfileResource {
 	
 	ProfileService profileService = new ProfileService();
 	
