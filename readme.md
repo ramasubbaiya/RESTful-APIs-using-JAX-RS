@@ -14,14 +14,16 @@
 
 	* Without Response
 
-	```@POST
+	```
+	@POST
 	public Message addMessage(Message message) {
 		return messageService.addMessage(message);
 	}
 	```
 	* Response with StatusCode
 	
-	```@POST
+	```
+	@POST
 	public Response addMessage(Message message) {
 		Message newMessage = messageService.addMessage(message);
 		return Response.status(Status.CREATED)
@@ -31,7 +33,8 @@
 	```
 	* Response with Location
 	
-	```@POST
+	```
+	@POST
 	public Response addMessage(Message message, @Context UriInfo uriInfo) {
 		Message newMessage = messageService.addMessage(message);
 		String newId = String.valueOf(newMessage.getId());
@@ -42,4 +45,37 @@
 	}
 	```
 	
-* Handling Exception and using WebApplication Exception
+* Handling Exception
+
+* Content Negotiation
+
+	* Produce or Consume - Content Type of a desired type(Eg: XML or JSON or Plain Text)
+
+	* For making it for all the Resource
+
+	```@Produces(value = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN})```
+
+	```@Consumes(value = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN})```
+
+	* For making it for desired Resource
+
+	* The can specify which Content-Type they want in the Header(Either XML or JSON)
+
+
+	```
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public list<Message> getAllMessagesInXML() {
+		return messageService.getAllMessages();
+	}
+	```
+	
+ 
+	```
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public list<Message> getAllMessagesInJSON() {
+		return messageService.getAllMessages();
+	}
+	```
+	
